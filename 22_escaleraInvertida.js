@@ -17,7 +17,5 @@ const invertedSteps = (num) => {
     }
 }
 
-
-
 const steps = prompt('Ingresa el número de escalones que deseas tenga la escalera invertida: ');
 invertedSteps(steps);

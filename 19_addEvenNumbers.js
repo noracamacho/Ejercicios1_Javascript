@@ -2,7 +2,7 @@ import PromptSync from "prompt-sync";
 const prompt = PromptSync();
 
 const addEvenNumbers = (number) => {
-    if(number < 4) return 'El número debe ser mayor a 4';
+    if(number < 1) return 'El número debe ser mayor a 0';
     let evenNumber = number % 2 === 0 ? number : number + 1;
     let result = evenNumber;
     let numbersString = evenNumber.toString();
