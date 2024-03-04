@@ -7,12 +7,11 @@ const calculateElapsedDays = (day, month, year) => {
     const calendarMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30];
     month = month - 1;
     let elapsedDays = 0;
-
     for (let i = 0; i < month; i++) {
         elapsedDays += calendarMonths[i];
     }
     // Comprobar si el año es bisiesto y si la fecha dada es despues del 28 de febrero
-    if ((month > 1 || (month = 1 && day > 28)) && isLeapYear(year)) {
+    if ((month > 1 || (month === 1 && day > 28)) && isLeapYear(year)) {
         elapsedDays += 1;
     }
     return elapsedDays + day;
@@ -31,14 +30,11 @@ const daysLived = () => {
     const currentMonth = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
     const monthCalendar = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio' ,'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    let inputYear = prompt('Ingresar año de nacimiento YYYY: ');
-    let inputMonth = prompt('Ingresar mes de nacimiento MM: ');
-    let inputDay = prompt('Ingresar día de nacimiento DD: ');
-    let birthYear = Number(inputYear);
-    let birthMonth = Number(inputMonth);
-    let birthDay = Number(inputDay);
+    let birthYear = Number(prompt('Ingresar año de nacimiento YYYY: '));
+    let birthMonth = Number(prompt('Ingresar mes de nacimiento MM: '));
+    let birthDay = Number(prompt('Ingresar día de nacimiento DD: '));
 
-    // Dias acumulados entre año de nacimiento + 1 y el año actual - 1
+    // Dias acumulados en los años completos entre el año siguiente al año de nacimiento y el año actual
     for (let year = birthYear + 1; year < currentYear; year++) {
         if (isLeapYear(year)) {
             totalDays += 366;
@@ -57,7 +53,7 @@ const daysLived = () => {
     // ********** Dias acumulados en al año de nac ********** 
     if (birthYear < currentYear) {
         let elapsedBirthDays = 365 - calculateElapsedDays(birthDay, birthMonth, birthYear);
-        if (((birthMonth > 1) || (birthMonth === 1 && birthDay > 28)) && isLeapYear(birthYear)) {
+        if (((birthMonth < 1) || (birthMonth === 1 && birthDay <= 28)) && isLeapYear(birthYear)) {
             elapsedBirthDays += 1;
         }
         totalDays += elapsedBirthDays;

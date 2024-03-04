@@ -60,7 +60,7 @@ const menuSelection = () => {
                 console.log('Elige la opción correcta');
                 break;
         }
-        if (optionMenu != 3) {
+        if(optionMenu != 3){
             let esperar = prompt('\nPresiona cualquir tecla para continuar');
         }
     } while (optionMenu != 3);
